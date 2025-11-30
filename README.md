@@ -142,74 +142,67 @@ Minimal Outcome Disparity: Emirati (49.0%) vs Expatriate (49.8%) recovery rates
 Exceptional Performance: Young expatriates show 85.7% recovery rate
 
 ### Clinical Insights
-Consistent Stage Outcomes: Recovery rates surprisingly consistent across cancer stages (48.7%-50.4%)
+- Consistent Stage Outcomes: Recovery rates surprisingly consistent across cancer stages (48.7%-50.4%)
 
-Smoking Impact: Clear correlation patterns between smoking status and specific cancer types
+- Smoking Impact: Clear correlation patterns between smoking status and specific cancer types
 
-Geographic Equity: Minimal performance variations across different emirates
+- Geographic Equity: Minimal performance variations across different emirates
 
-Healthcare System Performance
-Equitable Access: No significant disparities in treatment outcomes by nationality
+### Healthcare System Performance
+- Equitable Access: No significant disparities in treatment outcomes by nationality
 
-Treatment Consistency: Similar success rates across different healthcare facilities
+- Treatment Consistency: Similar success rates across different healthcare facilities
 
-Demographic Coverage: Comprehensive patient representation across all age groups
+-Demographic Coverage: Comprehensive patient representation across all age groups
 
-Business & Healthcare Implications
+### Business & Healthcare Implications
 
 For Healthcare Policymakers:
-Increase investment in immunotherapy treatment capabilities
+- Increase investment in immunotherapy treatment capabilities
 
-Develop targeted screening programs for high-risk demographics
+- Develop targeted screening programs for high-risk demographics
 
-Maintain current equitable resource allocation strategies
+- Maintain current equitable resource allocation strategies
 
 For Hospital Administrators:
-Replicate successful treatment protocols from high-performing patient groups
+- Replicate successful treatment protocols from high-performing patient groups
 
-Implement more precise cancer staging protocols
+- Implement more precise cancer staging protocols
 
-Enhance smoking cessation and preventive care programs
+- Enhance smoking cessation and preventive care programs
 
 For Public Health Strategy:
-Intensify anti-smoking campaigns based on identified risk patterns
+- Intensify anti-smoking campaigns based on identified risk patterns
 
-Continue successful healthcare distribution models across emirates
+- Continue successful healthcare distribution models across emirates
 
-Focus on early detection and specialized care for complex cancer types
+- Focus on early detection and specialized care for complex cancer types
 
 ## 🏆 Conclusion
-This project demonstrates a complete end-to-end clinical data analysis pipeline:
+- This project demonstrates a complete end-to-end clinical data analysis pipeline:
 
-Clear healthcare problem framing and dataset selection
+- Clear healthcare problem framing and dataset selection
 
-Professional-level data cleaning and preprocessing of messy clinical data
+- Professional-level data cleaning and preprocessing of messy clinical data
 
-Comprehensive exploratory analysis with advanced visualizations
+- Comprehensive exploratory analysis with advanced visualizations
 
-Actionable insights with real-world healthcare implications
+- Actionable insights with real-world healthcare implications
 
-Professional documentation and reproducible analysis
+- Professional documentation and reproducible analysis
 
-The analysis highlights strong skills in Python, pandas, data visualization, statistical analysis, and healthcare analytics, making it suitable for academic evaluation, healthcare portfolio projects, and GitHub showcasing.
+- The analysis highlights strong skills in Python, pandas, data visualization, statistical analysis, and healthcare analytics, making it suitable for academic evaluation, healthcare portfolio projects, and    GitHub showcasing.
 
 ## 🚀 How to Use This Project
 
 Clone the repository
+git clone https://github.com/vishnuvpk20/EDA-of-Cancer-Treatment-Outcomes-and-Patient-Demographics-using-Python 
 
-bash
-git clone https://github.com/yourusername/UAE-Cancer-EDA-Analysis.git
 Install requirements
-
-bash
 pip install -r requirements.txt
+
 Explore the analysis
-
 Open Jupyter notebooks in /notebooks/ directory
-
-Review generated visualizations in /visualizations/
-
-Read comprehensive report in /reports/analysis_report.pdf
 
 ## 📊 Technologies Used
 Python 3.x
@@ -225,7 +218,4 @@ Statistical Analysis - Correlation and trend analysis
 👨‍💻 Author
 VISHNUPEASAD KANNOTH
 GitHub: https://github.com/vishnuvpk20 
-
-
-This project serves as a demonstration of comprehensive data analysis skills applied to real-world healthcare challenges, showcasing the power of data-driven decision making in clinical settings.
 
