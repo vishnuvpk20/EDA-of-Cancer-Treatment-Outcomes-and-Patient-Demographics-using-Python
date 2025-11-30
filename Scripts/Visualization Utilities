@@ -1,0 +1,99 @@
+"""
+Visualization utilities for cancer data analysis
+"""
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import numpy as np
+
+def setup_plot_style():
+    """Set consistent plotting style"""
+    plt.style.use('default')
+    sns.set_palette("husl")
+    plt.rcParams['font.size'] = 12
+    plt.rcParams['axes.titlesize'] = 16
+    plt.rcParams['axes.labelsize'] = 14
+
+def plot_cancer_type_distribution(df, save_path=None):
+    """Plot cancer type distribution"""
+    plt.figure(figsize=(12, 6))
+    cancer_counts = df['cancer_type'].value_counts()
+    
+    colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#F7DC6F']
+    plt.bar(cancer_counts.index, cancer_counts.values, color=colors[:len(cancer_counts)])
+    plt.title('📊 Cancer Type Distribution', fontweight='bold')
+    plt.xlabel('Cancer Type')
+    plt.ylabel('Number of Patients')
+    plt.xticks(rotation=45)
+    plt.grid(axis='y', alpha=0.3)
+    
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+    plt.show()
+
+def plot_outcome_by_cancer_type(df, save_path=None):
+    """Plot treatment outcomes by cancer type"""
+    outcome_by_cancer = pd.crosstab(df['cancer_type'], df['outcome'], normalize='index') * 100
+    
+    plt.figure(figsize=(14, 8))
+    outcome_by_cancer.plot(kind='bar', stacked=True, color=['#2ecc71', '#f39c12', '#e74c3c'])
+    plt.title('🏥 Treatment Outcomes by Cancer Type', fontweight='bold')
+    plt.xlabel('Cancer Type')
+    plt.ylabel('Percentage (%)')
+    plt.legend(title='Outcome', bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.xticks(rotation=45)
+    plt.grid(axis='y', alpha=0.3)
+    
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+    plt.show()
+
+def create_correlation_heatmap(df, columns, save_path=None):
+    """Create correlation heatmap for specified columns"""
+    # Encode categorical variables
+    df_encoded = df[columns].copy()
+    categorical_cols = ['cancer_stage', 'outcome', 'smoking_status']
+    
+    for col in categorical_cols:
+        if col in df_encoded.columns:
+            df_encoded[col] = pd.factorize(df_encoded[col])[0]
+    
+    correlation_matrix = df_encoded.corr()
+    
+    plt.figure(figsize=(10, 8))
+    mask = np.triu(np.ones_like(correlation_matrix, dtype=bool))
+    sns.heatmap(correlation_matrix, mask=mask, annot=True, cmap='coolwarm', center=0,
+                square=True, fmt='.2f', cbar_kws={"shrink": .8})
+    plt.title('🔥 Correlation Heatmap', fontweight='bold')
+    
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+    plt.show()
+
+def plot_smoking_analysis(df, save_path=None):
+    """Comprehensive smoking analysis plots"""
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+    
+    # Smoking status distribution
+    smoking_counts = df['smoking_status'].value_counts()
+    colors = ['#4ECDC4', '#FF6B6B', '#FFEAA7']
+    axes[0].pie(smoking_counts.values, labels=smoking_counts.index, autopct='%1.1f%%',
+                colors=colors, startangle=90)
+    axes[0].set_title('Smoking Status Distribution')
+    
+    # Recovery rates by smoking status
+    recovery_by_smoking = df.groupby('smoking_status')['outcome'].apply(
+        lambda x: (x == 'Recovered').mean() * 100
+    )
+    axes[1].bar(recovery_by_smoking.index, recovery_by_smoking.values, 
+                color=colors, alpha=0.8)
+    axes[1].set_title('Recovery Rates by Smoking Status')
+    axes[1].set_ylabel('Recovery Rate (%)')
+    
+    for i, v in enumerate(recovery_by_smoking.values):
+        axes[1].text(i, v + 1, f'{v:.1f}%', ha='center', va='bottom', fontweight='bold')
+    
+    if save_path:
+        plt.savefig(save_path, bbox_inches='tight', dpi=300)
+    plt.show()
