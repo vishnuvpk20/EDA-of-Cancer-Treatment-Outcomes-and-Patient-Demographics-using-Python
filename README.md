@@ -1,4 +1,4 @@
-# UAE Cancer Patients - Exploratory Data Analysis (EDA)
+# EDA-of-Cancer-Treatment-Outcomes-and-Patient-Demographics-using-Python
 This project performs a comprehensive Exploratory Data Analysis (EDA) on clinical data of cancer patients from the UAE, focusing on treatment outcomes, demographic patterns, healthcare access disparities, and factors influencing patient recovery. It includes problem definition, data cleaning, preprocessing, advanced visualizations, statistical analysis, and actionable healthcare insights.
 
 ## 📁 Project Structure
