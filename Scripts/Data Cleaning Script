@@ -1,0 +1,88 @@
+"""
+Data Cleaning Utilities for UAE Cancer Dataset
+"""
+
+import pandas as pd
+import numpy as np
+from datetime import datetime
+
+def load_raw_data(filepath):
+    """Load the raw cancer dataset"""
+    return pd.read_csv(filepath)
+
+def clean_column_names(df):
+    """Standardize column names"""
+    df.columns = df.columns.str.strip().str.replace(' ', '_').str.lower()
+    return df
+
+def standardize_text_data(df, text_columns):
+    """Convert text data to consistent title case"""
+    for col in text_columns:
+        if col in df.columns:
+            df[col] = df[col].astype(str).str.strip().str.title()
+    return df
+
+def clean_dates(df, date_columns):
+    """Standardize various date formats"""
+    def parse_date(date_str):
+        if pd.isna(date_str) or str(date_str).lower() in ['', 'nan', 'nat']:
+            return np.nan
+        try:
+            return pd.to_datetime(date_str)
+        except:
+            return pd.to_datetime(date_str, errors='coerce')
+    
+    for col in date_columns:
+        if col in df.columns:
+            df[col] = df[col].apply(parse_date)
+    return df
+
+def calculate_bmi(df):
+    """Calculate BMI from weight and height"""
+    df['bmi'] = df['weight'] / ((df['height']/100) ** 2)
+    return df
+
+def create_age_groups(df):
+    """Create age group categories"""
+    df['age_group'] = pd.cut(df['age'], bins=[0, 30, 50, 70, 100],
+                            labels=['Young (<30)', 'Adult (30-50)', 'Senior (50-70)', 'Elderly (70+)'])
+    return df
+
+def full_data_cleaning_pipeline(filepath):
+    """Complete data cleaning pipeline"""
+    print("🚀 Starting data cleaning pipeline...")
+    
+    # Load data
+    df = load_raw_data(filepath)
+    print(f"📊 Original data shape: {df.shape}")
+    
+    # Clean column names
+    df = clean_column_names(df)
+    
+    # Standardize text data
+    text_cols = ['gender', 'nationality', 'emirate', 'cancer_type', 'cancer_stage', 
+                'treatment_type', 'hospital', 'outcome', 'smoking_status']
+    df = standardize_text_data(df, text_cols)
+    
+    # Clean dates
+    date_cols = ['diagnosis_date', 'treatment_start_date', 'death_date']
+    df = clean_dates(df, date_cols)
+    
+    # Remove duplicates
+    initial_count = len(df)
+    df = df.drop_duplicates()
+    print(f"🗑️  Removed {initial_count - len(df)} duplicate rows")
+    
+    # Create derived features
+    df = calculate_bmi(df)
+    df = create_age_groups(df)
+    
+    print("✅ Data cleaning completed!")
+    print(f"📈 Final data shape: {df.shape}")
+    
+    return df
+
+if __name__ == "__main__":
+    # Example usage
+    cleaned_df = full_data_cleaning_pipeline('data/raw/cancer_dataset.csv')
+    cleaned_df.to_csv('data/cleaned/cancer_dataset_cleaned.csv', index=False)
