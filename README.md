@@ -11,7 +11,7 @@ UAE-Cancer-EDA-Analysis/
 │   └── cleaned/                       <-- cancer_dataset_cleaned.csv
 ├── notebooks/                         <-- Jupyter notebooks with complete analysis
 ├── reports/
-│   └── analysis_report.pdf           <-- Comprehensive findings report
+│   └── notebooks with complete analysis_report.          <-- Comprehensive findings report
 ├── visualizations/                    <-- Generated charts and graphs
 └── scripts/                          <-- Data processing utilities
 
